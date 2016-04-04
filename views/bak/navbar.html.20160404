@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" data-toggle="clingify">
+        <div class="row">
+            <div class="navbar-header">
+                {{if .IsDocs}}
+                <span class="visible-xs">
+                    <a id="docs-collapse-btn" class="navbar-btn" data-toggle="jpanel-menu" data-target="#docs-collapse">
+                        <span class="sr-only">Toggle docs menu</span>
+                        <i class="icon icon-angle-right"></i>
+                    </a>
+                </span>
+                {{end}}
+                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="visible-xs text-center">
+                    <a class="navbar-brand" href="/">
+                       WeFun 
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{{template "base/base.html" .}}
+{{define "meta"}}
+    <meta name="description" content="Beego Web is official blog and documentation website for beego app web framework" />
+    <meta name="keywords" content="Go, golang, beego, API documentation, blog, app web framework">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title> {{i18n .Lang "homepage"}} </title>
+    <title>WeFun</title>
+{{end}}
+{{define "head"}} {{end}}
+
+{{define "body"}}
+<body>
+     {{i18n .Lang "homepage"}}
+    <div class="description">
+      Wefun is simple websiste.
+    </div>
+</body>
+{{end}}
