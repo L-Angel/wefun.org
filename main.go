@@ -16,6 +16,13 @@ func main() {
         beego.Info(controllers.IsPro)
 
         controllers.InitApp()
+        if !controllers.IsPro {
+                beego.SetStaticPath("/static_source", "static_source")
+                beego.BConfig.WebConfig.DirectoryIndex = true
+        }
+
+
+
 	beego.AddFuncMap("i18n", i18n.Tr)
 
 	beego.Run()
