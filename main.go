@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "wefun.org/routers"
+	_ "github.com/DeanChina/wefun.org/routers"
 	"wefun.org/controllers"
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"

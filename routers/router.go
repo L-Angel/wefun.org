@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"wefun.org/controllers"
+	"github.com/DeanChina/wefun.org/controllers"
 	"github.com/astaxie/beego"
 )
 
