@@ -3,20 +3,7 @@
         <div class="row footer-wrap">
             <div class="col-md-12 desc">
                 <div class="pull-right">
-                    <div class="btn-group dropup">
-                        <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown">{{i18n .Lang "current_lang"}}{{i18n .Lang .Lang}} <i class="caret"></i></button>
-                        <ul class="dropdown-menu">
-                            {{range .RestLangs}}
-                                <li><a href="javascript::" data-lang="{{.Lang}}" class="lang-changed">{{i18n $.Lang .Name}}</a></li>
-                            {{end}}
-                        </ul>
-                    </div>
-                    {{if eq .Lang "zh-CN"}}
-                        <a class="btn btn-success" href="/donate"><i class="icon-dollar"></i> 捐赠我们</a>
-                    {{end}}
-                    {{if eq .Lang "en-US"}}
-                        <a class="btn btn-success" href="/donate"><i class="icon-dollar"></i> Donate Us</a>
-                    {{end}}
+                        <a class="btn btn-success" href="/join">{{i18n .Lang "join"}}</a>
                 </div>
                 
                 <p>
