@@ -1,0 +1,98 @@
+{{template "base/base.html" .}}
+{{define "meta"}}
+    <meta name="description" content="Beego Web is official blog and documentation website for beego app web framework" />
+    <meta name="keywords" content="Go, golang, beego, API documentation, blog, app web framework">
+    <title>{{i18n .Lang "homepage"}} - WeFun: {{i18n .Lang "app_intro"}}</title>
+{{end}}
+{{define "head"}}{{end}}
+{{define "body"}}
+<div class="main-header">
+HomePage is here
+
+
+<div class="list-post-top">
+<article id="post-3060" class="post-3060 post type-post status-publish format-standard has-post-thumbnail hentry category-127 tag-docker-">
+
+	
+		
+		<div class="post-img-wrap">
+
+			 	<a href="http://blog.daocloud.io/docker-%e4%b8%8d%e5%86%8d%e6%98%af%e5%8d%95%e4%b8%80%e7%9a%84-docker-%e8%ae%b0-docker-1-11-0-%e7%89%88%e6%9c%ac%e5%8f%98%e6%9b%b4/" title="Docker 不再是单一的 Docker——记 Docker 1.11.0 版本变更" >
+
+				<img width="250" height="250" src="http://blog.daocloud.io/wp-content/uploads/2016/02/4afbfbedab64034f2227605babc379310b551d80.jpg-250x250.png" class="attachment-post-thumbnail wp-post-image" alt="4afbfbedab64034f2227605babc379310b551d80.jpg" />
+				</a>
+
+		</div>
+
+		<div class="listpost-content-wrap">
+
+		
+	
+	<div class="list-post-top">
+
+	<header class="entry-header">
+
+		<h1 class="entry-title"><a href="http://blog.daocloud.io/docker-%e4%b8%8d%e5%86%8d%e6%98%af%e5%8d%95%e4%b8%80%e7%9a%84-docker-%e8%ae%b0-docker-1-11-0-%e7%89%88%e6%9c%ac%e5%8f%98%e6%9b%b4/" rel="bookmark">Docker 不再是单一的 Docker——记 Docker 1.11.0 版本变更</a></h1>
+
+
+
+		
+		<div class="entry-meta">
+
+			<span class="posted-on">Posted on <a href="http://blog.daocloud.io/docker-%e4%b8%8d%e5%86%8d%e6%98%af%e5%8d%95%e4%b8%80%e7%9a%84-docker-%e8%ae%b0-docker-1-11-0-%e7%89%88%e6%9c%ac%e5%8f%98%e6%9b%b4/" rel="bookmark"><time class="entry-date published" datetime="2016-04-15T15:41:20+00:00">April 15, 2016</time><time class="updated" datetime="2016-04-15T15:44:23+00:00">April 15, 2016</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://blog.daocloud.io/author/yi-wangdaocloud-io/">yi wang</a></span></span>
+		</div><!-- .entry-meta -->
+
+		
+	</header><!-- .entry-header -->
+
+
+
+	
+	<div class="entry-content">
+
+		<p>春节过后，时隔两个月，Docker 的又一个大版本 1.11.0 发布，除了功能的不断完善之外，该版本最大的看点无疑在于 Docker Daemon 的架构由原来一个模块，现在拆分为 4 个独立的模块。</p>
+
+		
+	</div><!-- .entry-content -->
+
+	
+	</div><!-- .list-post-top -->
+
+	<footer class="entry-footer">
+
+		
+			
+			<span class="cat-links">
+
+				Posted in <a href="http://blog.daocloud.io/category/%e5%b9%b2%e8%b4%a7/" rel="category tag">干货</a>
+			</span>
+
+			
+
+
+			
+			<span class="tags-links">
+
+				Tagged <a href="http://blog.daocloud.io/tag/docker-%e5%b9%b2%e8%b4%a7/" rel="tag">Docker 干货</a>
+			</span>
+
+			
+		
+
+
+		
+		<span class="comments-link"><a href="http://blog.daocloud.io/docker-%e4%b8%8d%e5%86%8d%e6%98%af%e5%8d%95%e4%b8%80%e7%9a%84-docker-%e8%ae%b0-docker-1-11-0-%e7%89%88%e6%9c%ac%e5%8f%98%e6%9b%b4/#respond" title="Comment on Docker 不再是单一的 Docker——记 Docker 1.11.0 版本变更">Leave a comment</a></span>
+
+		
+
+
+		
+	</footer><!-- .entry-footer -->
+
+</div><!-- .listpost-content-wrap -->
+
+</article><!-- #post-## -->
+</div>
+</div>
+
+{{end}}

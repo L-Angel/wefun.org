@@ -1,0 +1,36 @@
+.main .container{
+	width:75%;
+	height:30%;
+	/* margin:0 auto; */
+	margin-left: 5%;
+}
+/*内容区left*/
+.main .list_left{
+	display: inline-flex;			
+}
+.main .list_left .list_pic{
+	/* height:auto; */
+	width: 200px;
+	height: 200px;
+}
+/*内容区right*/
+.main .list_right{
+	width: 72%;
+	float: right;
+	margin-right: 55px;
+	margin-top: 10px;
+}
+.main .list_right .list_title{
+	font-size: 20px;
+}
+a{text-decoration: none;}
+.main .entry-date{
+	color: #bdbdbd;
+	font-style: italic;
+}
+.main .list_right .list_content{
+	margin-top: 15px;
+        width: 85%;
+	margin-bottom: 15px;
+	line-height: 20px;
+}
