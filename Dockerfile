@@ -1,5 +1,5 @@
 FROM golang
-MAINTAINER astaxie xiemengjun@gmail.com
+MAINTAINER Dean Dean.Wefun@gmail.com
 
 RUN go get github.com/astaxie/beego
 
