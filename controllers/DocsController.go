@@ -11,6 +11,6 @@ type DocsController struct {
 func (c *DocsController) Get() {
 	c.Data["Website"] = "www.wefun.org"
 	c.Data["Email"] = "Dean.Wefun@gmail.com"
-        c.Data["IsDocs"] = true
+	c.Data["IsDocs"] = true
 	c.TplName = "Docs.tpl"
 }
