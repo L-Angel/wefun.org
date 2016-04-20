@@ -15,4 +15,5 @@ func init() {
     beego.Router("/join", &controllers.JoinController{})
     beego.Router("/about", &controllers.AboutController{})
     beego.Router("/team", &controllers.TeamController{})
+    beego.Router("/md",   &controllers.MarkdownController{})
 }

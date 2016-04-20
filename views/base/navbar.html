@@ -42,19 +42,20 @@
                 </ul>
                 <div class="hidden-sm hidden-xs nav-lang pull-right">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">{{i18n .Lang "current_lang"}}{{i18n .Lang .Lang}} <i class="caret"></i></button>
+                            	<i class="world icon"></i>
+                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">
+				{{i18n .Lang .Lang}}
+			<i class="caret"></i></button>
                         <ul class="dropdown-menu">
                             {{range .RestLangs}}
                                 <li><a href="javascript::" data-lang="{{.Lang}}" class="lang-changed">{{i18n $.Lang .Name}}</a></li>
                             {{end}}
                         </ul>
-                 登录
-         <li class="dropdown hidden-md hidden-sm hidden-lg">
-           <a  target="_self" id="nav-sign-up" ng-click="gotosignin()">登录
-            </a>
-          </li>
                     </div>
-                </div>
+                    <div class="btn-group">
+			{{i18n .Lang "login"}}
+                    </div>
+                </div> <!--  lang -->
             </div>
         </div>
     </div>
