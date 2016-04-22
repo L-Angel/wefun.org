@@ -1,9 +1,4 @@
-# WeFun开发团队
-
-### Full(李文良)
-
-- 团队角色：WeFun开发者
-- 社交网络：
+# WeFun团队
 
 ### Dean
 
@@ -14,11 +9,16 @@
 ### Rick
 
 - 团队角色：WeFun开发者
-- 社交网络：[GitHub])https://github.com/L-Angel)
+- 社交网络：[GitHub](https://github.com/L-Angel)
+
+### Full(李文良)
+
+- 团队角色：WeFun开发者
+- 社交网络：[GitHub](https://github.com/icngor)
 
 ### Anonymous
 
 - 团队角色：维护英文文档和资源
 - 社交网络：[GitHub](https://github.com/)
 
-![](https://https://github.com/fluidicon.png)
+![](https://github.com/fluidicon.png)
