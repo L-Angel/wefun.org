@@ -6,11 +6,8 @@
 {{end}}
 {{define "head"}}{{end}}
 {{define "body"}}
-<div class="main">
-	<!-- 内容区 -->
-	<div class="container">
-		Hello Markdown
-	</div> <!-- end of container -->
-</div> <!-- end of main -->
+
+
+{{.MarkdownContent |str2html}}
 
 {{end}}
