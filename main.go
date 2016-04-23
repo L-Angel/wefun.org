@@ -5,7 +5,6 @@ import (
 	"github.com/DeanChina/wefun.org/models"
 	_ "github.com/DeanChina/wefun.org/routers"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
 	"github.com/beego/i18n"
 )
 
@@ -19,15 +18,15 @@ func main() {
 
 	//connect to database
 	models.RegisterDataBase()
-	o := orm.NewOrm()
-	o.Using("default")
 
-	//demo operate  data from database
+	//demo : operate  data from database
 	/*
-		user := new(models.User)
-		user.Username = "admin"
-		user.Password = "admin"
-		o.Insert(user)
+		        o := orm.NewOrm()
+		        o.Using("default")
+		        user := new(models.User)
+		        user.Username = "admin"
+			user.Password = "admin"
+			o.Insert(user)
 	*/
 	controllers.InitApp()
 	if !controllers.IsPro {

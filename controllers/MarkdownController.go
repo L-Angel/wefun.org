@@ -21,6 +21,7 @@ func (c *MarkdownController) Get() {
 	link := c.Ctx.Request.URL.Path
 	beego.Info(link)
 	// beego.Info(c.Ctx.Request.URL.Path)
+	str, err := getFile(link)
 	if err != nil {
 		c.Abort("404")
 	}
