@@ -11,13 +11,13 @@ import (
 )
 
 type Blog struct {
-	Id          int       `orm:"column(BlogId);auto"`
-	UserId      int       `orm:"column(UserId);null"`
-	Title       string    `orm:"column(Title);size(250);null"`
-	Path        string    `orm:"column(Path);size(512);null"`
-	ReleaseTime time.Time `orm:"column(ReleaseTime);type(datetime);null"`
-	ModifyTime  time.Time `orm:"column(ModifyTime);type(datetime);null"`
-	Permission  int       `orm:"column(Permission);null"`
+	Id               int       `orm:"column(BlogId);auto"`
+	UserId           int       `orm:"column(UserId);null"`
+	BlogPermissionId int       `orm:"column(BlogPermissionId);null"`
+	Title            string    `orm:"column(Title);size(250);null"`
+	Path             string    `orm:"column(Path);size(512);null"`
+	ReleaseTime      time.Time `orm:"column(ReleaseTime);type(datetime);null"`
+	ModifyTime       time.Time `orm:"column(ModifyTime);type(datetime);null"`
 }
 
 func (t *Blog) TableName() string {
