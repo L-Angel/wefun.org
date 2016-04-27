@@ -10,18 +10,19 @@ import (
 )
 
 type User struct {
-	Id         int    `orm:"column(UserId);auto"`
-	Nick       string `orm:"column(Nick);size(250);null"`
-	Username   string `orm:"column(Username);size(250);null"`
-	Password   string `orm:"column(Password);size(250);null"`
-	Email      string `orm:"column(Email);size(250);null"`
-	Qq         string `orm:"column(Qq);size(50);null"`
-	WeChat     string `orm:"column(WeChat);size(50);null"`
-	University string `orm:"column(University);size(50);null"`
-	Address    string `orm:"column(Address);size(250);null"`
-	Tel        string `orm:"column(Tel);size(50);null"`
-	Degree     string `orm:"column(Degree);size(50);null"`
-	UniqId     string `orm:"column(UniqId);size(50);null"`
+	Id            int    `orm:"column(UserId);auto"`
+	Nick          string `orm:"column(Nick);size(250);null"`
+	Username      string `orm:"column(Username);size(250);null"`
+	Password      string `orm:"column(Password);size(250);null"`
+	Email         string `orm:"column(Email);size(250);null"`
+	Qq            string `orm:"column(Qq);size(50);null"`
+	WeChat        string `orm:"column(WeChat);size(50);null"`
+	University    string `orm:"column(University);size(50);null"`
+	Address       string `orm:"column(Address);size(250);null"`
+	Tel           string `orm:"column(Tel);size(50);null"`
+	Degree        string `orm:"column(Degree);size(50);null"`
+	UniqId        string `orm:"column(UniqId);size(50);null"`
+	CommentNotify int    `orm:"column(Notify);default(0)"`
 }
 
 func (t *User) TableName() string {
