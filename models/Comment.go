@@ -3,19 +3,24 @@ package models
 import (
 	"errors"
 	"fmt"
-	"reflect"
-	"strings"
+	"log"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type Comment struct {
-	Id       int    `orm:"column(CommentId);auto"`
-	BlogId   int    `orm:"column(BlogId);null"`
-	UserId   int    `orm:"column(UserId);null"`
-	ParentId int    `orm:"column(ParentId);null"`
-	Depth    int    `orm:"column(Depth);null"`
-	Content  string `orm:"column(Content);null"`
+	Id           int       `orm:"column(CommentId);auto"`
+	BlogId       int       `orm:"column(BlogId);null"`
+	NotifyUserId int       `orm:"column(NotifyUserId);null"`
+	UserId       int       `orm:"column(UserId);null"`
+	CommentTime  time.Time `orm:"column(CommentTime)"`
+	ModifyTime   time.Time `orm:"column(ModifyTime);null"`
+	IsAnonymous  bool      `orm:column(IsAnonymous)`
+	//Depth       int       `orm:"-"`
+	Content string `orm:"column(Content);null"`
+	Link    int    `orm:"column(Link)"`
+	IsRead  bool   `orm:column(IsRead)`
 }
 
 func (t *Comment) TableName() string {
@@ -30,93 +35,49 @@ func init() {
 // last inserted Id on success.
 func AddComment(m *Comment) (id int64, err error) {
 	o := orm.NewOrm()
-	id, err = o.Insert(m)
+
+	//Query review authority
+	var b []*BlackMan
+	qs := o.QueryTable(new(BlackMan))
+	qs.Filter("UserId__exact", m.NotifyUserId)
+
+	if _, err = qs.All(&b); err == nil {
+		for v, item := range b {
+			log.Println(v, "==", item)
+			if item.BlackMan == m.UserId {
+				return -1, errors.New("Users can not comment on the Blacklist")
+			}
+		}
+		id, err = o.Insert(m)
+		if err == nil {
+			//There are new comments to notify users
+			u := User{Id: m.NotifyUserId}
+			o.Read(&u)
+			//log.Println(u)
+			u.CommentNotify++
+			o.Update(&u)
+		}
+	}
 	return
 }
 
-// GetCommentById retrieves Comment by Id. Returns error if
-// Id doesn't exist
-func GetCommentById(id int) (v *Comment, err error) {
+// DeleteComment deletes Comment by Id and returns error if
+// the record to be deleted doesn't exist
+func DeleteComment(id int) (err error) {
 	o := orm.NewOrm()
-	v = &Comment{Id: id}
-	if err = o.Read(v); err == nil {
-		return v, nil
-	}
-	return nil, err
-}
-
-// GetAllComment retrieves all Comment matches certain condition. Returns empty list if
-// no records exist
-func GetAllComment(query map[string]string, fields []string, sortby []string, order []string,
-	offset int64, limit int64) (ml []interface{}, err error) {
-	o := orm.NewOrm()
-	qs := o.QueryTable(new(Comment))
-	// query k=v
-	for k, v := range query {
-		// rewrite dot-notation to Object__Attribute
-		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
-	}
-	// order by:
-	var sortFields []string
-	if len(sortby) != 0 {
-		if len(sortby) == len(order) {
-			// 1) for each sort field, there is an associated order
-			for i, v := range sortby {
-				orderby := ""
-				if order[i] == "desc" {
-					orderby = "-" + v
-				} else if order[i] == "asc" {
-					orderby = v
-				} else {
-					return nil, errors.New("Error: Invalid order. Must be either [asc|desc]")
-				}
-				sortFields = append(sortFields, orderby)
-			}
-			qs = qs.OrderBy(sortFields...)
-		} else if len(sortby) != len(order) && len(order) == 1 {
-			// 2) there is exactly one order, all the sorted fields will be sorted by this order
-			for _, v := range sortby {
-				orderby := ""
-				if order[0] == "desc" {
-					orderby = "-" + v
-				} else if order[0] == "asc" {
-					orderby = v
-				} else {
-					return nil, errors.New("Error: Invalid order. Must be either [asc|desc]")
-				}
-				sortFields = append(sortFields, orderby)
-			}
-		} else if len(sortby) != len(order) && len(order) != 1 {
-			return nil, errors.New("Error: 'sortby', 'order' sizes mismatch or 'order' size is not 1")
-		}
-	} else {
-		if len(order) != 0 {
-			return nil, errors.New("Error: unused 'order' fields")
+	v := Comment{Id: id}
+	// ascertain id exists in the database
+	if err = o.Read(&v); err == nil {
+		u := User{Id: v.NotifyUserId}
+		o.Read(&u)
+		log.Println(v)
+		if _, err = o.Delete(&v); err == nil && v.IsRead == false && u.CommentNotify > 0 {
+			u.CommentNotify -= 1
+			log.Println(u)
+			_, err = o.Update(&u)
 		}
 	}
-
-	var l []Comment
-	qs = qs.OrderBy(sortFields...)
-	if _, err := qs.Limit(limit, offset).All(&l, fields...); err == nil {
-		if len(fields) == 0 {
-			for _, v := range l {
-				ml = append(ml, v)
-			}
-		} else {
-			// trim unused fields
-			for _, v := range l {
-				m := make(map[string]interface{})
-				val := reflect.ValueOf(v)
-				for _, fname := range fields {
-					m[fname] = val.FieldByName(fname).Interface()
-				}
-				ml = append(ml, m)
-			}
-		}
-		return ml, nil
-	}
-	return nil, err
+	return
 }
 
 // UpdateComment updates Comment by Id and returns error if
@@ -134,17 +95,51 @@ func UpdateCommentById(m *Comment) (err error) {
 	return
 }
 
-// DeleteComment deletes Comment by Id and returns error if
-// the record to be deleted doesn't exist
-func DeleteComment(id int) (err error) {
+// GetCommentById retrieves Comment by Id. Returns error if
+// Id doesn't exist
+func GetCommentById(id int) (v *Comment, err error) {
 	o := orm.NewOrm()
-	v := Comment{Id: id}
-	// ascertain id exists in the database
-	if err = o.Read(&v); err == nil {
-		var num int64
-		if num, err = o.Delete(&Comment{Id: id}); err == nil {
-			fmt.Println("Number of records deleted in database:", num)
-		}
+	v = &Comment{Id: id}
+	if err = o.Read(v); err == nil {
+		return v, nil
 	}
-	return
+	return nil, err
+}
+
+// GetCommentByNotifyUserId retrieves Comment by NotifyUserId.Return error if UserId doesn't exist
+func GetUnReadCommentByNotifyUserId(id int) (comments []*Comment, err error) {
+	o := orm.NewOrm()
+	//var comments []*Comment
+
+	_, err = o.QueryTable(new(Comment)).Filter("NotifyUserId", id).Filter("IsRead", false).OrderBy("-CommentTime").All(&comments)
+
+	if err == nil {
+		return comments, nil
+	}
+	return nil, err
+}
+
+// GetCommentByBlogID retrieves Comment by BlogId.Return error if BlogId doesn't exist
+func GetCommentByBlogId(id int) (comments []*Comment, err error) {
+	//var comments []*Comment
+
+	o := orm.NewOrm()
+	_, err = o.QueryTable(new(Comment)).Filter("BlogId", id).OrderBy("-CommentTime").All(&comments)
+
+	if err == nil {
+		return comments, nil
+	}
+	return nil, err
+}
+
+// The reviewer Id find comments
+func GetCommentByUserId(id int) (comments []*Comment, err error) {
+	//var comments []*Comment
+
+	o := orm.NewOrm()
+	_, err = o.QueryTable(new(Comment)).Filter("UserId__exact", id).OrderBy("-CommentTime").All(&comments)
+	if err == nil {
+		return comments, nil
+	}
+	return nil, err
 }
