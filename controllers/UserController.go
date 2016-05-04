@@ -4,6 +4,7 @@ import (
      
     "github.com/astaxie/beego"
     "github.com/DeanChina/wefun.org/controllers/common"
+    "fmt"
 )
 //notice : modify method get to post when in Produce environment
 /**
@@ -18,10 +19,12 @@ type LoginController struct{
 func (this *LoginController) Get() {
 	username:=this.GetString("username")
 	password:=this.GetString("password")
+	fmt.Println(common.AES(password))
+	UserInfo := common.SetUserInfo("administrator","XXXXXX",nil)
 	if username=="admin"&&password=="admin"{
-	    this.Data["json"]=common.SetResponse("true","success")
+	    this.Data["json"]=common.SetResponse("true",UserInfo,200)
 	}else{
-	    this.Data["json"]=common.SetResponse("false","password is error")
+	    this.Data["json"]=common.SetResponse("false","password is error",nil)
 	}
 	this.ServeJSON()
 	return 
@@ -44,8 +47,8 @@ func (this *RegisterController) Get(){
 	email:=this.GetString("email")
 	//tel:=this.GetString("tel")
 	//address:=this.GetString("address")
-    common.SetResponse("true","success")
-    common.SetResponse("email",email)
+    common.SetResponse("true","success",nil)
+    common.SetResponse("email",email,nil)
     this.ServeJSON()
 	return
 

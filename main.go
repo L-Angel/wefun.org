@@ -6,6 +6,7 @@ import (
 	_ "github.com/DeanChina/wefun.org/routers"
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
+	"github.com/DeanChina/wefun.org/logs"
 )
 
 const (
@@ -15,9 +16,10 @@ const (
 func main() {
 	beego.Info(beego.BConfig.AppName, APP_VER)
 	beego.Info(controllers.IsPro)
-
+    
 	//connect to database
 	models.RegisterDataBase()
+	log.InitLog()
 
 	//demo : operate  data from database
 	/*
