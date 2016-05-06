@@ -6,7 +6,6 @@ import (
 	_ "github.com/DeanChina/wefun.org/routers"
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
-	"github.com/DeanChina/wefun.org/logs"
 )
 
 const (
@@ -19,7 +18,6 @@ func main() {
     
 	//connect to database
 	models.RegisterDataBase()
-	log.InitLog()
 
 	//demo : operate  data from database
 	/*

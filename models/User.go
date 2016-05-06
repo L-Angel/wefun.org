@@ -155,3 +155,13 @@ func DeleteUser(id int) (err error) {
 	}
 	return
 }
+
+func GetUserByUsername(name string)(v *User,err error){
+	o:=orm.NewOrm()
+	v = &User{Username:name}
+	if err := o.Read(v);err == nil{
+		return v,nil
+	}
+	return nil,err
+
+}

@@ -20,6 +20,7 @@ func (this *LoginController) Get() {
 	username:=this.GetString("username")
 	password:=this.GetString("password")
 	fmt.Println(common.AES(password))
+	fmt.Println(common.AESDecrypt(common.AES(password)))
 	UserInfo := common.SetUserInfo("administrator","XXXXXX",nil)
 	if username=="admin"&&password=="admin"{
 	    this.Data["json"]=common.SetResponse("true",UserInfo,200)
@@ -52,4 +53,17 @@ func (this *RegisterController) Get(){
     this.ServeJSON()
 	return
 
+}
+
+/*
+UserInfo:
+*/
+
+type UserInfoController struct{
+	beego.Controller
+}
+
+func (this *UserInfoController) Get(){
+	
+	return 
 }

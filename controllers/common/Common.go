@@ -1,5 +1,7 @@
 package common
 
+import(
+)
 func SetResponse(r interface{},m interface{},s interface{}) (map[string]interface{}){
 	return map[string]interface{}{"result":r,"msg":m,"status":s}
 }
