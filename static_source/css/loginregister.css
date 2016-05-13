@@ -1,0 +1,159 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+   
+}
+a {
+    color: #428bca;
+    text-decoration: none;
+}
+@media all and (max-width: 767px){
+	.register-part, .login-part {
+		min-width: 250px;
+		margin: 0 14px !important;
+	}
+}
+@media all and (min-width: 768px){
+    .register-part, .login-part {
+       max-width: 400px;
+    }
+}
+.register-wrap ,.login-wrap{
+    background: #ecf0f1;
+    height: 100%;
+    padding-top: 50px;
+}
+/*login part*/
+.register-part, .login-part {
+	background: #fefefe;
+	border: 1px solid #eaeaea;
+	margin: 0 auto;
+}
+.register-part h3 , .login-part h3{
+    margin: 0;
+    margin-bottom: 23px;
+    font-size: 1.25em;
+    color: #747474;
+    padding: 32px 30px 0 30px;
+}
+.register-info ,.login-info{
+	padding: 0px 30px;
+}
+.form-group input {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    border: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+    font-weight: normal;
+    text-indent: 43px;
+    outline: 0;
+    font-size: 1.25em;
+    transition: border .6s;
+    -moz-transition: border .6s;
+    -webkit-transition: border .6s;
+    -o-transition: border .6s;
+}
+.form-group {
+    position: relative;
+}
+.form-group i.fa{
+    position: absolute;
+    top: 9px;
+    left: 14px;
+    font-size: 16px;
+    color: #d6d6d6;
+}
+.form-group input:focus+i.fa{
+    color: #888;
+}
+.form-group input:active, .register-info form input:focus{
+    border: 1px solid #4791ff;
+}
+.form-group .captcha-input {
+    width: 70%;
+    display: inline-block;
+}
+.form-group .captcha-img {
+    width: 25%;
+    float: right;
+    height: 35px;
+}
+
+/*forget password*/
+.login-forget-password {
+    color: #999;
+    font-size: 1rem;
+    line-height: 20px;
+    overflow: hidden;
+}
+.login-forget-password span input {
+    float: left;
+}
+.login-forget-password > a {
+    float: right;
+    color: #999;
+    text-decoration: none;
+}
+.login-forget-password > a:hover{
+    text-decoration: underline;
+}
+
+
+.register-btn ,.login-btn{
+	padding: 0px 30px;
+    background: #4C4C4C;
+    border-radius: 6px;
+    display: block;
+    height: 44px;
+    line-height: 44px;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5em;
+    clear: both;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+
+}
+.split-line {
+    background: #eee;
+    height: 1px;
+    margin-top: 40px;
+}
+
+/*third login*/
+.login-third-part {
+    padding: 20px 52px 35px 30px;
+}
+.login-third-part span {
+    display: block;
+    font-size: 1.083rem;
+    color: #666;
+    margin-bottom: 11px;
+}
+
+.login-third-part .sina, .login-third-part .linkin, .login-third-part .baidu, .login-third-part .qq, .login-third-part .google, .login-third-part .github {
+    display: inline-block;
+    background-image: url("../images/login-third-party.png");
+    background-repeat: no-repeat;
+    margin-right: 5px;
+    width: 32px;
+    height: 32px;
+}
+.login-third-part .sina {
+    background-position: 0 0;
+}
+.login-third-part .baidu {
+    background-position: -74px 0;
+}
+.login-third-part .qq {
+    background-position: -112px 0;
+}
+.login-third-part .github {
+    background-position: -186px 0;
+}
