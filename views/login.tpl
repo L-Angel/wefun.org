@@ -14,6 +14,7 @@
 		<div class="login-part">
 			<h3>账号登陆</h3>
 			<div class="login-info">
+				{{.Success}}
 				<form action="">
 					<div class="form-group">
 						<input type="text" class="" placeholder="用户名/邮箱/手机号" required>
@@ -24,9 +25,14 @@
 						<i class="fa fa-lock"></i>
 					</div>
 					<div class="form-group">
-						<input type="text" class="captcha-input" placeholder="请输入验证码" required>
+						
+						<input type="text" name="captcha" class="captcha-input" placeholder="请输入验证码" required>
+					
 						<i class="fa fa-lock"></i>
+					<!--
 						<img src="http://www.chinwhiz.cn/wechat-subscribe-master/pc/login/php/vdimgck.php" class="captcha-img">
+					-->
+					{{create_captcha}}
 					</div>
 					<div class="login-forget-password">
 						<span>

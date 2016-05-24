@@ -12,6 +12,7 @@
 	<div class="register-wrap">
 		<div class="register-part">
 			<h3>注册账号</h3>
+			{{.Success}}
 			<div class="register-info">
 				<form action="">
 					<div class="form-group">
@@ -27,9 +28,9 @@
 						<i class="fa fa-lock"></i>
 					</div>
 					<div class="form-group">
-						<input type="text" class="captcha-input" placeholder="请输入验证码" required>
+						<input type="text" name="captcha" class="captcha-input" placeholder="请输入验证码" required>
 						<i class="fa fa-lock"></i>
-						<img src="http://www.chinwhiz.cn/wechat-subscribe-master/pc/login/php/vdimgck.php" class="captcha-img">
+						{{create_captcha}}
 					</div>
 					<input class="register-btn" value="注 册" type="submit">
 				</form>

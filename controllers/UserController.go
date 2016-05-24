@@ -3,27 +3,55 @@ package controllers
 import (
     "github.com/DeanChina/wefun.org/models"
     "github.com/DeanChina/wefun.org/tools"
+    "github.com/astaxie/beego/cache"
+    "github.com/astaxie/beego/utils/captcha"
     "strings"
     "fmt"
 )
 
+var cpt *captcha.Captcha
+
+func init(){
+	store := cache.NewMemoryCache()
+	cpt=captcha.NewWithFilter("/captcha/",store)
+}
+
 type LoginController struct{
 	baseController
 }
+func (this *LoginController) Post(){
+	this.Data["Website"] = "www.wefun.org"
+	this.Data["Email"] = "Dean.Wefun@gmail.com"
+    this.Data["IsLogin"] = true
+    this.Data["Success"] =cpt.VerifyReq(this.Ctx.Request)
+	this.TplName="login.tpl"
+}
+
 func (this *LoginController) Get(){
 	this.Data["Website"] = "www.wefun.org"
 	this.Data["Email"] = "Dean.Wefun@gmail.com"
     this.Data["IsLogin"] = true
 	this.TplName="login.tpl"
 }
+
+
+
 type RegisterController struct{
 	baseController
 }
+func (this *RegisterController) Post(){
+	this.Data["Website"] = "www.wefun.org"
+	this.Data["Email"] = "Dean.Wefun@gmail.com"
+    this.Data["IsRegister"] = true
+    this.Data["Success"]=cpt.VerifyReq(this.Ctx.Request)
+    this.TplName="register.tpl"
+}
+
 func (this *RegisterController) Get(){
 	this.Data["Website"] = "www.wefun.org"
 	this.Data["Email"] = "Dean.Wefun@gmail.com"
     this.Data["IsRegister"] = true
-    this.TplName="register.tpl"
+    this.TplName = "register.tpl"
 }
 //notice : modify method get to post when in Produce environment
 /**
