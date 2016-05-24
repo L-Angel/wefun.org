@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{{template "base/base.html" .}}
+{{define "meta"}}
 	<meta charset="UTF-8">
 	<title>Register Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{end}}
+{{define "head"}}
 	<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style/loginregister.css">
-</head>
-<body>
-	<header></header>
+	<link rel="stylesheet" href="/static_source/css/loginregister.css">
+{{end}}
+{{define "body"}}
 	<div class="register-wrap">
 		<div class="register-part">
 			<h3>注册账号</h3>
@@ -46,5 +46,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+{{end}}

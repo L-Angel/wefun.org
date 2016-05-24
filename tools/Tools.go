@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func CopyFile(dst, src String) (w int64, err error) {
+func CopyFile(dst, src string) (w int64, err error) {
 	srcFile, err := os.Open(src)
 	if err != nil {
 		return

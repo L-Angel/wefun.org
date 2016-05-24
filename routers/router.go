@@ -7,7 +7,7 @@ import (
 
 func init() {
     beego.ErrorController(&controllers.ErrorController{})
-    beego.Router("/", &controllers.MainController{})
+    beego.Router("/",&controllers.MainController{})
     beego.Router("/blog", &controllers.BlogController{})
     beego.Router("/community", &controllers.CommunityController{})
     beego.Router("/docs", &controllers.DocsController{})
@@ -18,5 +18,7 @@ func init() {
     beego.Router("/team", &controllers.TeamController{})
     beego.Router("/user/login",&controllers.LoginController{})
     beego.Router("/user/register",&controllers.RegisterController{})
+    beego.Router("/interface/user/login",&controllers.InterfaceLoginController{})
+    beego.Router("/interface/user/register",&controllers.InterfaceRegisterController{})
     beego.Router("/md/*.md",   &controllers.MarkdownController{})
 }

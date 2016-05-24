@@ -4,8 +4,8 @@ import (
 	"github.com/DeanChina/wefun.org/controllers"
 	"github.com/DeanChina/wefun.org/models"
 	_ "github.com/DeanChina/wefun.org/routers"
-	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
+	"github.com/astaxie/beego"
 )
 
 const (
@@ -35,6 +35,6 @@ func main() {
 	}
 
 	beego.AddFuncMap("i18n", i18n.Tr)
-
+    //beego.Errorhandler("404", controllers.PageNotFound)
 	beego.Run()
 }

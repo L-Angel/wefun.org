@@ -3,6 +3,7 @@ package controllers
 
 import(
     "github.com/astaxie/beego"
+    "net/http"
 )
 
 type ErrorController struct{
@@ -10,8 +11,9 @@ type ErrorController struct{
 }
 
 func (this *ErrorController) Error404() {
-    this.Data["content"] = "page not found"
-    this.TplName = "error/404.tpl"
+    this.Ctx.Redirect(302,"http://www.baidu.com")
+    this.EnableRender=false
+
 }
 
 func (this *ErrorController) Error500() {
@@ -22,4 +24,8 @@ func (this *ErrorController) Error500() {
 func (this *ErrorController) ErrorDb() {
     this.Data["content"] = "database is now down"
     this.TplName = "error/errordb.tpl"
+}
+
+func PageNotFound(rw http.ResponseWriter,r *http.Request){
+	rw.Header().Set("Location","www.baidu.com")
 }

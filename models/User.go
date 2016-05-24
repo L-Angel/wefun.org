@@ -159,9 +159,36 @@ func DeleteUser(id int) (err error) {
 func GetUserByUsername(name string)(v *User,err error){
 	o:=orm.NewOrm()
 	v = &User{Username:name}
-	if err := o.Read(v);err == nil{
+	if err := o.Read(v,"Username");err == nil{
 		return v,nil
 	}
 	return nil,err
+}
 
+func CheckOrAddUser(username string,password string,email string,tel string,address string)(r string,msg string,err error){
+     o:=orm.NewOrm()
+     /**
+     err = o.Read(user)
+     if err == orm.ErrBoRows {
+     	fmt.Println("No this record!")
+     } else if err == orm.ErrMissPk{
+     	fmt.Println("No Pk")
+     }else{
+     	o.Insert(user)
+     }
+     **/
+    user := User{Password:password,Username:username,Email:email,Tel:tel,Address:address}
+    fmt.Println(user)
+    if ok, id, err := o.ReadOrCreate(&user,"Username"); nil == err {
+     	fmt.Println(ok)
+     	if ok{
+     		fmt.Println("Add User Ok")
+     		return "true","",nil
+     	}else{
+     		fmt.Println(id," is existed!")
+            return "false","Is existed",nil
+     	}
+     }
+     fmt.Println(err)
+     return "error","",err
 }

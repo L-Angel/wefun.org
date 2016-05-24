@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{{ template "base/base.html" .}}
+	{{define "meta"}}
 	<meta charset="UTF-8">
-	<title>Login Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{i18n .Lang "homepage"}} - WeFun: {{i18n .Lang "app_intro"}}</title>
+	{{end}}
+	{{define  "head"}}
 	<link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style/loginregister.css">
-</head>
-<body>
+	<link rel="stylesheet" href="/static_source/css/loginregister.css">
+	{{end}}
+	{{ define "body"}}
 	<header></header>
 	<div class="login-wrap">
 		<div class="login-part">
@@ -52,5 +53,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+	{{end}}
