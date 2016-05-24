@@ -48,7 +48,7 @@ func (this *InterfaceLoginController) Get() {
 			UserInfo := tools.SetUserInfo(user.Username,"uniqid000000001","administrator","administrator")
 			this.Data["json"]=tools.SetLoginResponse("success",UserInfo,10000)
 		}else if user != nil && user.Password != tools.AES(password) {
-            this.Data["json"]=tools.LoginSetResponse("failure","password is error",20001)
+            this.Data["json"]=tools.SetLoginResponse("failure","password is error",20001)
 		}else if user == nil {
 		    this.Data["json"]=tools.SetLoginResponse("failure","dont find user "+username,20002)	
 		}
