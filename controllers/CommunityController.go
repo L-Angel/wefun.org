@@ -11,6 +11,6 @@ type CommunityController struct {
 func (c *CommunityController) Get() {
 	c.Data["Website"] = "www.wefun.org"
 	c.Data["Email"] = "Dean.Wefun@gmail.com"
-        c.Data["IsCommunity"] = true
+	c.Data["IsCommunity"] = true
 	c.TplName = "Community.tpl"
 }

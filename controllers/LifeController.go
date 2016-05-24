@@ -11,6 +11,6 @@ type LifeController struct {
 func (c *LifeController) Get() {
 	c.Data["Website"] = "www.wefun.org"
 	c.Data["Email"] = "Dean.Wefun@gmail.com"
-        c.Data["IsLife"] = true
+	c.Data["IsLife"] = true
 	c.TplName = "Life.tpl"
 }

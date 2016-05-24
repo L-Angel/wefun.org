@@ -11,6 +11,6 @@ type AboutController struct {
 func (c *AboutController) Get() {
 	c.Data["Website"] = "www.wefun.org"
 	c.Data["Email"] = "Dean.Wefun@gmail.com"
-        c.Data["IsAbout"] = true
+	c.Data["IsAbout"] = true
 	c.TplName = "About.tpl"
 }

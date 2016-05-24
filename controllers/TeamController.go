@@ -12,5 +12,6 @@ func (c *TeamController) Get() {
 	c.Data["Website"] = "www.wefun.org"
 	c.Data["Email"] = "Dean.Wefun@gmail.com"
     c.Data["IsTeam"] = true
+
 	c.TplName = "Team.tpl"
 }
