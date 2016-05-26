@@ -15,13 +15,13 @@
 			<h3>账号登陆</h3>
 			<div class="login-info">
 				{{.Success}}
-				<form action="">
+				<form action="/interface/user/login" method="get">
 					<div class="form-group">
-						<input type="text" class="" placeholder="用户名/邮箱/手机号" required>
+						<input type="text" name="username" class="" placeholder="用户名/邮箱/手机号" required>
 						<i class="fa fa-user"></i>
 					</div>
 					<div class="form-group">
-						<input type="password" class="" placeholder="请输入密码" required>
+						<input type="password" name="password" class="" placeholder="请输入密码" required>
 						<i class="fa fa-lock"></i>
 					</div>
 					<div class="form-group">
@@ -32,7 +32,7 @@
 					<!--
 						<img src="http://www.chinwhiz.cn/wechat-subscribe-master/pc/login/php/vdimgck.php" class="captcha-img">
 					-->
-					{{create_captcha}}
+					{{create_captcha}}	
 					</div>
 					<div class="login-forget-password">
 						<span>

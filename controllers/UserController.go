@@ -66,9 +66,14 @@ type InterfaceLoginController struct{
 func (this *InterfaceLoginController) Get() {
 	username:=strings.TrimSpace(this.GetString("username"))
 	password:=strings.TrimSpace(this.GetString("password"))
+	captcha_id:=this.GetString("captcha_id")
+	captcha:=this.GetString("captcha")
+	b:=cpt.Verify(captcha_id,captcha)
 	//fmt.Println(tools.AES(password))
 	//fmt.Println(tools.AESDecrypt(tools.AES(password)))
-	if username != "" {
+	if b!=true{
+		this.Data["json"]=tools.SetLoginResponse("failure","Captcha Verify not match.",20010)
+	}else if username != "" {
 		user,err := models.GetUserByUsername(username)
 		fmt.Println(user)
 		fmt.Println(err)
@@ -76,7 +81,7 @@ func (this *InterfaceLoginController) Get() {
 			UserInfo := tools.SetUserInfo(user.Username,"uniqid000000001","administrator","administrator")
 			this.Data["json"]=tools.SetLoginResponse("success",UserInfo,10000)
 		}else if user != nil && user.Password != tools.AES(password) {
-            this.Data["json"]=tools.SetLoginResponse("failure","password is error",20001)
+            this.Data["json"]=tools.SetLoginResponse("failure","Password is error.",20001)
 		}else if user == nil {
 		    this.Data["json"]=tools.SetLoginResponse("failure","dont find user "+username,20002)	
 		}
@@ -106,6 +111,10 @@ func (this *InterfaceRegisterController) Get(){
 	email:=this.GetString("email")
 	tel:=this.GetString("tel")
 	address:=this.GetString("address")
+	//captcha_id:=this.GetString("captcha_id")
+	//captcha:=this.GetString("captcha")
+	//b:=captcha.VerifyString(captcha_id,captcha)
+	//fmt.Println(b)
 
 	result,msg,err:=models.CheckOrAddUser(username,password,email,tel,address)
 	if result == "true"{
