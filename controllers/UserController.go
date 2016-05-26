@@ -111,20 +111,23 @@ func (this *InterfaceRegisterController) Get(){
 	email:=this.GetString("email")
 	tel:=this.GetString("tel")
 	address:=this.GetString("address")
-	//captcha_id:=this.GetString("captcha_id")
-	//captcha:=this.GetString("captcha")
-	//b:=captcha.VerifyString(captcha_id,captcha)
-	//fmt.Println(b)
-
-	result,msg,err:=models.CheckOrAddUser(username,password,email,tel,address)
-	if result == "true"{
-    this.Data["json"]=tools.SetResponse(result,msg,nil)
-	}else if result == "false"{
-    this.Data["json"]=tools.SetResponse(result,msg,nil)
-	}else if result == "error"{
-    this.Data["json"]=tools.SetResponse(result,err,nil)
-	}
-    
+	captcha_id:=this.GetString("captcha_id")
+	captcha:=this.GetString("captcha")
+	b:=cpt.Verify(captcha_id,captcha)
+	if b!= true{
+		tools.SetResponse("failure","Captcha Verify not match",20010)
+	}else{
+		result,msg,err:=models.CheckOrAddUser(username,tools.AES(password),email,tel,address)
+		if result == "true"{
+    		this.Data["json"]=tools.SetResponse("success",msg,10000)
+		}else if result == "false"{
+			if msg=="existed" {
+				this.Data["json"]=tools.SetResponse("failure",msg,20001)
+			}
+		}else if result == "error"{
+    		this.Data["json"]=tools.SetResponse("error",err,30000)
+		}
+    }
     this.ServeJSON()
 	return
 

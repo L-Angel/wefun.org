@@ -186,7 +186,7 @@ func CheckOrAddUser(username string,password string,email string,tel string,addr
      		return "true","",nil
      	}else{
      		fmt.Println(id," is existed!")
-            return "false","Is existed",nil
+            return "false","existed",nil
      	}
      }
      fmt.Println(err)
