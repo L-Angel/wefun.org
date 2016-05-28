@@ -114,23 +114,28 @@ func (this *InterfaceRegisterController) Get(){
 	captcha_id:=this.GetString("captcha_id")
 	captcha:=this.GetString("captcha")
 	b:=cpt.Verify(captcha_id,captcha)
-	if b!= true{
-		tools.SetResponse("failure","Captcha Verify not match",20010)
+
+	if b != true {
+		this.Data["json"]=tools.SetResponse("failure","Captcha Verify not match",20010)
 	}else{
-		result,msg,err:=models.CheckOrAddUser(username,tools.AES(password),email,tel,address)
+		result,msg,err:=models.CheckOrAddUser(username,password,email,tel,address)
 		if result == "true"{
-    		this.Data["json"]=tools.SetResponse("success",msg,10000)
+    			this.Data["json"]=tools.SetResponse("success",msg,10000)
 		}else if result == "false"{
 			if msg=="existed" {
 				this.Data["json"]=tools.SetResponse("failure",msg,20001)
+			}else{
+				this.Data["json"]=tools.SetResponse("failure",msg,20000)
 			}
 		}else if result == "error"{
-    		this.Data["json"]=tools.SetResponse("error",err,30000)
+    		        this.Data["json"]=tools.SetResponse("error",err,30000)
+		}else{
+			this.Data["json"]=tools.SetResponse("error","dont clear error",30010)
 		}
-    }
-    this.ServeJSON()
-	return
 
+         }
+        this.ServeJSON()
+	return
 }
 
 /*
